@@ -1,6 +1,7 @@
 package org.example
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
+import org.example.core.EmulatorFacade
+
 fun main() {
     println("Welcome to the D5700 Emulator.")
     print("Enter the path to the ROM file: ")
@@ -11,7 +12,11 @@ fun main() {
         return
     }
 
-    val emulator = EmulatorFacade()
-    emulator.loadProgram(path)
-    emulator.run()
+    try {
+        val emulator = EmulatorFacade()
+        emulator.loadProgram(path)
+        emulator.run()
+    } catch (e: IllegalArgumentException) {
+        println("Please enter correct filepath.")
+    }
 }
